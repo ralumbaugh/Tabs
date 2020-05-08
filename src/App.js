@@ -1,24 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Tabs from './components/Tabs'
+import Display from './components/Display'
+import Input from './components/Input';
 
 function App() {
+  const [post, setPost] = useState([{tab:"Starter Tab", Content:"Feel free to input any new tabs or messages below"}]);
+  const [currentTab, setCurrentTab] = useState("Starter Tab")
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Tabs setCurrentTab={setCurrentTab} currentTab={currentTab} post={post}/>
+      <Display currentTab={currentTab} post={post}/>
+      <Input post={post} setPost={setPost}/>
     </div>
   );
 }
